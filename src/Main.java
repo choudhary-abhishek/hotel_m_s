@@ -183,7 +183,7 @@ public class Main {
             e.printStackTrace();
         }
     }
-    private static void deleteReservation(Connection connection, Scanner scanner) {
+    private static void deleteReservation(Connection connection, Scanner scanner)throws InterruptedException {
         try {
             System.out.println("Enter reservation ID to delete: ");
             int reservationId = scanner.nextInt();
@@ -197,8 +197,14 @@ public class Main {
             try (Statement statement = connection.createStatement()) {
                 int affectedRows = statement.executeUpdate(sql);
                 if (affectedRows > 0) {
-
-                    System.out.println("Reservation deleted successfully!");
+                    System.out.println("Reservation deleting ");
+                    int i = 4;
+                    while(i!=0){
+                        System.out.print(".");
+                        Thread.sleep(1000);
+                        i--;
+                    }
+                    System.out.println("Delet succesceful!");
                 } else {
                     System.out.println("Reservation deletion failed.");
                 }
